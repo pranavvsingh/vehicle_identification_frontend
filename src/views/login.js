@@ -1,44 +1,37 @@
-import React, { useState } from "react";
-import { CFormGroup, CCol, CRow, CInputGroup, CInput, CInputGroupAppend, CButton } from "@coreui/react";
-import axios from "axios";
+import React, { Component } from "react";
+import { CCol } from "@coreui/react";
 
-const Dashboard = () => {
-  const [vin, setVin] = useState("");
-  const [vinData, setVinData] = useState("");
+export default class Login extends Component {
+    render() {
+        return (
+          <CCol md="6">
+            <div class="d-flex justify-content-center">
+            <form>
+                <h3>Sign In</h3>
+                <div className="form-group">
+                    <label>Email address</label>
+                    <input type="email" className="form-control" placeholder="Enter email" />
+                </div>
 
-  const handleVin = (e) => {
-    setVin(e.target.value);
-  };
+                <div className="form-group">
+                    <label>Password</label>
+                    <input type="password" className="form-control" placeholder="Enter password" />
+                </div>
 
-  const callVinApi = async () => {
-    // console.log(vin);
-    // const url = "https://192.163.4.6/api/getVin" + "&vincode=" + vin;
-    // const response = await axios.get(url);
-    // setVinData(response);
-  };
+                <div className="form-group">
+                    <div className="custom-control custom-checkbox">
+                        <input type="checkbox" className="custom-control-input" id="customCheck1" />
+                        <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
+                    </div>
+                </div>
 
-  return (
-    <>
-      <h2 class="text-center">Never Trust Anyone When You Buy A Car.</h2>
-      <h2 class="text-center">Best Website for Vehicle's Auction History Images</h2>
-      <br />
-      <h3 class="text-center">Vehicle History Report by VIN</h3>
-      <div class="d-flex justify-content-center">
-        <CFormGroup row>
-          <CCol md="12">
-            <CInputGroup>
-              <CInput type="vin" id="input2-group2" name="input2-group2" placeholder="Enter VIN....." onChange={handleVin} />
-              <CInputGroupAppend>
-                <CButton type="button" color="primary" onClick={callVinApi}>
-                  Check
-                </CButton>
-              </CInputGroupAppend>
-            </CInputGroup>
-          </CCol>
-        </CFormGroup>
-      </div>
-    </>
-  );
-};
-
-export default Dashboard;
+                <button type="submit" className="btn btn-primary btn-block">Submit</button>
+                <p className="forgot-password text-right">
+                    Forgot <a href="#">password?</a>
+                </p>
+            </form>
+            </div>
+            </CCol>
+        );
+    }
+}

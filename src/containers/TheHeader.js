@@ -1,4 +1,4 @@
-import React from "react";
+import React , {useState,useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   CHeader,
@@ -26,7 +26,19 @@ import {
 
 const TheHeader = () => {
   const dispatch = useDispatch();
-  const sidebarShow = useSelector((state) => state.sidebarShow);
+  const [url, setUrl] = useState("https://www.sdfsffds.com/");
+  const sidebarShow = useSelector((state) => state.changeState.sidebarShow);
+  console.log("sideBarShow",sidebarShow)
+  const paymentStatus = useSelector((state) => state.payment.paymentStatus);
+
+  useEffect(() => {
+    console.log("paymentStatus",paymentStatus)
+    if(paymentStatus === true){
+      setUrl("https://www.google.com/")
+    }
+  });
+  
+  
 
   const toggleSidebar = () => {
     const val = [true, "responsive"].includes(sidebarShow)
@@ -71,9 +83,12 @@ const TheHeader = () => {
           </CHeaderNavLink>
         </CHeaderNavItem>
         <CHeaderNavItem className="px-3">
-          <CHeaderNavLink to="/autocheck">
-            <strong>Autocheck</strong>
-          </CHeaderNavLink>
+        <CLink
+        href={url}
+        target="_blank"
+      >
+       <strong>Autocheck</strong>
+      </CLink>
         </CHeaderNavItem>
         <CHeaderNavItem className="px-3">
           <CHeaderNavLink to="/auction">

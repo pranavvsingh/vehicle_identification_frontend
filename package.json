@@ -34,6 +34,7 @@
     "@material-ui/icons": "^4.11.2",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.0",
     "axios": "^0.21.1",
+    "bootstrap": "^5.0.1",
     "classnames": "^2.2.6",
     "core-js": "^3.9.1",
     "dotenv": "^10.0.0",
@@ -59,7 +60,7 @@
     "react-scripts": "^4.0.3"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "./node_modules/react-scripts/bin/react-scripts.js start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "test:cov": "npm test -- --coverage --watchAll=false",

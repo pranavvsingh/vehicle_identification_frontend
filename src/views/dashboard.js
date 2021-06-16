@@ -1,36 +1,32 @@
-import React, { useState } from "react";
-import { CFormGroup, CCol, CRow, CInputGroup, CInput, CInputGroupAppend, CButton } from "@coreui/react";
-import CIcon from "@coreui/icons-react";
+import React, { useReducer } from "react";
+import { CCol, CInputGroup, CInputGroupAppend, CButton } from "@coreui/react";
 import VinReport from "./VinReport";
-import Api from "../Api/Api";
 import LastCheck from "../reusable/lastCheck.js";
-import { BiXCircle } from "react-icons";
 import SearchBar from "material-ui-search-bar";
+import {dashboardReducer} from "../reducers/component-reducer"
+import { useDispatch } from 'react-redux'
 
-require("dotenv").config();
+const initialState = {
+  vin:"",
+  vinData:"",
+  visible:false,
+  visibleLastCheck:true,
+};
 
 const Dashboard = () => {
-  const [vin, setVin] = useState("");
-  const [vinData, setVinData] = useState("");
-  const [visible, setVisible] = useState(false);
-  const [visibleLastCheck, setVisibleLastCheck] = useState(true);
+  const [state, dispatch] = useReducer(dashboardReducer, initialState);
+  const {vin,  vinData,  visible,  visibleLastCheck} = state;
+  const reduxDispatch = useDispatch();
 
-  const handleVin = (e) => {
-    setVin(e);
-  };
-
-  const callVinApi = async () => {
-    setVinData(vin);
-    setVisible(true);
-    setVisibleLastCheck(false);
-  };
-
-  const clearVinApi = async () => {
-    setVin("");
-    setVinData("");
-    setVisibleLastCheck(true);
-    setVisible(false);
-  };
+  const callVin = () =>{
+    var payment = "success";
+    if(payment === "success"){
+      reduxDispatch({type:"success",data:"success"})
+      dispatch({type:"call_vin"})
+    }else{
+      reduxDispatch({type:"failure",data:"failure"})
+    }
+  }
 
   return (
     <>
@@ -56,9 +52,9 @@ const Dashboard = () => {
       <div class="d-flex justify-content-center">
         <CCol md="4">
           <CInputGroup className="mb-12">
-            <SearchBar value={vin} placeholder="Enter VIN....." onChange={handleVin} onCancelSearch={clearVinApi} />
+            <SearchBar value={vin} placeholder="Enter VIN....." onChange={e => dispatch({type:"field",field:"vin",value:e})} onCancelSearch={()=>dispatch({type:"clear_vin_data"})} />
             <CInputGroupAppend>
-              <CButton type="button" color="primary" onClick={callVinApi}>
+              <CButton type="button" color="primary" onClick={callVin}>
                 Check
               </CButton>
             </CInputGroupAppend>
@@ -66,7 +62,7 @@ const Dashboard = () => {
         </CCol>
       </div>
 
-      {visible && <VinReport vin={vinData} />}
+      {visible && <VinReport vin={vin} />}
 
       {visibleLastCheck && <LastCheck />}
     </>
