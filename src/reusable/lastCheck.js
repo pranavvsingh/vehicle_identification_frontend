@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { CCol, CRow, CCard, CCardHeader, CCardBody, CCardFooter, CCardTitle } from "@coreui/react";
+import { CCol, CRow, CButton } from "@coreui/react";
 import axios from "axios";
 import "../scss/lastCheck.css";
 
 const lastCheckVinData = [
   {
     id: 1,
-    vin: "123903htf-yf-ugfyf",
+    vin: "dzfbg53t363-yf-ugfyf",
   },
   {
     id: 2,
-    vin: "123903htf-yf-ugfyf",
+    vin: "grertes34-yf-ugfyf",
   },
   {
     id: 3,
@@ -18,11 +18,11 @@ const lastCheckVinData = [
   },
   {
     id: 4,
-    vin: "123903htf-yf-ugfyf",
+    vin: "047furvdds-yf-ugfyf",
   },
   {
     id: 5,
-    vin: "123903htf-yf-ugfyf",
+    vin: "0op402nf-yf-ugfyf",
   },
   {
     id: 6,
@@ -30,15 +30,15 @@ const lastCheckVinData = [
   },
   {
     id: 7,
-    vin: "123903htf-yf-ugfyf",
+    vin: "dafafafdfda-yf-ugfyf",
   },
   {
     id: 8,
-    vin: "123903htf-yf-ugfyf",
+    vin: "1111111111-yf-ugfyf",
   },
   {
     id: 9,
-    vin: "123903htf-yf-ugfyf",
+    vin: "54674hgfhfg-yf-ugfyf",
   },
 ];
 
@@ -53,8 +53,20 @@ const LastCheck = () => {
     getLastCheckData();
   });
 
+  const callVin = (vin) => {
+    console.log("VIN", vin);
+  };
+
   const renderCard = (pacakage, index) => {
-    return <CCardTitle style={{ backgroundColor: "#fff00", margin: 10, color: "#fff" }}>{pacakage.vin}</CCardTitle>;
+    return (
+      <CButton
+        color="link"
+        onClick={() => callVin(pacakage.vin)}
+        style={{ backgroundColor: "#fff00", color: "#fff" }}
+      >
+        {pacakage.vin}
+      </CButton>
+    );
   };
 
   return (

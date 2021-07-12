@@ -26,20 +26,7 @@ import {
 
 const TheHeader = () => {
   const dispatch = useDispatch();
-  const [url, setUrl] = useState("https://www.sdfsffds.com/");
   const sidebarShow = useSelector((state) => state.changeState.sidebarShow);
-  console.log("sideBarShow",sidebarShow)
-  const paymentStatus = useSelector((state) => state.payment.paymentStatus);
-
-  useEffect(() => {
-    console.log("paymentStatus",paymentStatus)
-    if(paymentStatus === true){
-      setUrl("https://www.google.com/")
-    }
-  });
-  
-  
-
   const toggleSidebar = () => {
     const val = [true, "responsive"].includes(sidebarShow)
       ? false
@@ -83,12 +70,9 @@ const TheHeader = () => {
           </CHeaderNavLink>
         </CHeaderNavItem>
         <CHeaderNavItem className="px-3">
-        <CLink
-        href={url}
-        target="_blank"
-      >
-       <strong>Autocheck</strong>
-      </CLink>
+          <CHeaderNavLink to="/autocheck">
+            <strong>Autocheck</strong>
+          </CHeaderNavLink>
         </CHeaderNavItem>
         <CHeaderNavItem className="px-3">
           <CHeaderNavLink to="/auction">
@@ -101,7 +85,7 @@ const TheHeader = () => {
           </CHeaderNavLink>
         </CHeaderNavItem>
         <CHeaderNavItem className="px-3">
-          <CHeaderNavLink to="/login">
+          <CHeaderNavLink to="/auth">
             <strong>Login</strong>
           </CHeaderNavLink>
         </CHeaderNavItem>

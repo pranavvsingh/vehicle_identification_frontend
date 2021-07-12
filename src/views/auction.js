@@ -1,20 +1,45 @@
 import React, { useState, useEffect } from "react";
 import RenderHTML from "react-render-html";
+import { CCard } from "@coreui/react";
 
-const Auction = () => {
-  const [auctionPage, setAuctionPage] = useState("");
+import { apiData, apiDataPost } from "src/Api/Api";
 
-  const getAuctionPage = () => {
-    setAuctionPage(
-      "<!DOCTYPE html><html><head><title>Page Title</title></head><body><h1>This is a Heading</h1><p>This is a paragraph.</p></body></html>"
-    );
+const Carafax = () => {
+  const [autoCheckPage, setAutoCheckPage] = useState("");
+
+  const checkPaymentStatus = async() => {
+    const email = localStorage.getItem("email");
+    const phone = localStorage.getItem("phone");
+    const data = {
+      email,
+      phone,
+    }
+    const paymentStatus = await apiDataPost("get_payment",data);
+    console.log("paymentStatus:",typeof(paymentStatus.data.data[0].payment))
+    console.log("paymentStatus:",(paymentStatus.data.data[0].payment))
+    if(paymentStatus.data.status === 200 && paymentStatus.data.data[0].payment === 1 && paymentStatus.data.data[0].carafax === 1){
+      getAutoCheckPage();
+    }
   };
 
+  const getAutoCheckPage = async()=>{
+    const vincode = localStorage.getItem("vin");
+    const getAutoCheck = await apiData(`photo?vincode=${vincode}`);
+    console.log("GET_AUTO_CHECK:", getAutoCheck);
+    console.log(getAutoCheck.data.photo_copart_data)
+    setAutoCheckPage(getAutoCheck.data.photo_copart_data);
+    window.open(getAutoCheck.data.link)
+  }
+
   useEffect(() => {
-    getAuctionPage();
+    checkPaymentStatus()
   });
 
-  return <>{RenderHTML(auctionPage)}</>;
+  return <>
+  <CCard>
+  {RenderHTML(autoCheckPage)}
+  </CCard>
+  </>;
 };
 
-export default Auction;
+export default Carafax;
