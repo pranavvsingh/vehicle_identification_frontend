@@ -8,6 +8,7 @@ import {
   CTabPane,
 } from "@coreui/react";
 import axios from "axios";
+import Autocheck from "./autocheck";
 
 const Dashboard = () => {
   const [smartPhoneData, setSmartPhoneData] = useState("");
@@ -27,22 +28,25 @@ const Dashboard = () => {
   });
 
   return (
-    <>
+    <div className="tutorial-container">
+       <div className="text-center text-white mb-5">
+        <h2>Tutorials</h2>
+        </div>
       <CTabs activeTab="smartphone">
-        <CNav variant="tabs">
-          <CNavItem>
-            <CNavLink data-tab="smartphone">Smart Phone</CNavLink>
+        <CNav variant="tabs" className="border tabs border-dark">
+          <CNavItem className="font-weight-bold flex-fill">
+            <CNavLink data-tab="smartphone" className="rounded-0">Smart Phone</CNavLink>
           </CNavItem>
-          <CNavItem>
-            <CNavLink data-tab="pc">PC</CNavLink>
+          <CNavItem className="font-weight-bold flex-fill">
+            <CNavLink data-tab="pc" className="rounded-0">PC</CNavLink>
           </CNavItem>
         </CNav>
-        <CTabContent>
-          <CTabPane data-tab="smartphone">{smartPhoneData}</CTabPane>
-          <CTabPane data-tab="pc">{pcData}</CTabPane>
+        <CTabContent className="container mt-5">
+          <CTabPane data-tab="smartphone" className="text-white">{smartPhoneData}</CTabPane>
+          <CTabPane data-tab="pc" className="text-white">{pcData}</CTabPane>
         </CTabContent>
       </CTabs>
-    </>
+    </div>
   );
 };
 
