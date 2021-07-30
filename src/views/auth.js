@@ -12,31 +12,6 @@ import {
 } from "@coreui/react";
 
 const Auth = () => {
- /* return (
-    <>
-      <Tabs
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "center",
-          alignItems: "stretch",
-          padding: 10,
-          borderBottom: 0,
-        }}
-        defaultActiveKey="login"
-        id="uncontrolled-tab-example"
-        className="tabs border border-dark"
-      >
-        <Tab eventKey="login" title="Login" className="flex-fill">
-          <Login />
-        </Tab>
-        <Tab eventKey="signup" title="Create Account" className="flex-fill">
-          <SignUp />
-        </Tab>
-      </Tabs>
-    </>
-    
-  );*/
   return (
     <CTabs activeTab="login">
         <CNav variant="tabs" className="border tabs border-dark auth-container mt-5">

@@ -8,7 +8,7 @@ export default class Login extends Component {
       <CCol md="12">
         <div className="d-flex justify-content-center">
           <CCol md="4">
-            <CCard style={{ padding: 20 }} className="bg-transparent border-0">
+            <CCard style={{ padding: 20 }} className="black-gradient-background border-0">
               <Form>
                 <Form.Group className="mb-3">
                   <Form.Label>Email address</Form.Label>
