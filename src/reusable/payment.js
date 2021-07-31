@@ -13,18 +13,19 @@ import {
   CNav,
 } from "@coreui/react";
 import { apiDataPost } from "../Api/Api";
+import { Container, Row, Col, Form } from "react-bootstrap";
 const Payment = (props) => {
   const [activeKey, setActiveKey] = useState(true);
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  const paymentAmount = props.location.state.detail;
+  //  const paymentAmount = props.location.state.detail;
 
   const redirectToZainCash = async () => {
     if (phone || email) {
       localStorage.setItem("phone", phone);
       localStorage.setItem("email", email);
       const params = {
-        amount: paymentAmount,
+        //  amount: paymentAmount,
       };
       const response = await apiDataPost("payment", params);
       localStorage.setItem("token", response.data.token);
@@ -38,10 +39,41 @@ const Payment = (props) => {
     <div class="d-flex justify-content-center" style={{ marginTop: "4%" }}>
       <CRow>
         <CCol xs={12}>
+          <div className="text-center text-white mb-5">
+            <h2>Payment</h2>
+          </div>
           <CCard
-            className="mb-4"
+            className="mb-4 black-gradient-background border-0 col-8 m-auto"
             style={{ padding: 20, backgroundColor: "#eee" }}
           >
+            <Container className="mb-2">
+              <Row>
+                <Col className="text-white text-center mb-2">
+                  <h5>Carfax, Rare Auction Images</h5>
+                </Col>
+              </Row>
+              <Row className="justify-content-between align-items-center">
+                <Col className="p-0" style={{flexGrow: 6}}>
+                  <Form.Control
+                    type="text"
+                    readOnly
+                    defaultValue="$12.13"
+                    className="text-primary font-weight-bold bg-white text-center"
+                  />
+                </Col>
+                <Col className="flex-grow-1 text-white font-weight-bold text-center">
+                  <span>or</span>
+                </Col>
+                <Col className="p-0" style={{flexGrow: 6}}>
+                  <Form.Control
+                    type="text"
+                    readOnly
+                    defaultValue="18,103 IQD"
+                    className="text-primary font-weight-bold bg-white text-center"
+                  />
+                </Col>
+              </Row>
+            </Container>
             <CNav
               variant="tabs"
               fill
@@ -56,6 +88,7 @@ const Payment = (props) => {
                 shadowRadius: 3,
                 elevation: 3,
               }}
+              className="tabs border border-dark mt-2 "
             >
               <CNavItem>
                 <CNavLink
@@ -121,25 +154,23 @@ const Payment = (props) => {
             <center>
               <h3 style={{ color: "#CCA10C" }}>Choose Payment Method</h3>
             </center>
-            <CCard className="mb-4">
-              <CCardHeader>
+            <CCard className="mb-4 bg-transparent">
+              <CCardHeader className="border border-dark rounded mb-1 text-white black-gradient-background p-2">
                 <center>
                   <strong>Credit or Debit Card</strong>
                 </center>
               </CCardHeader>
-              <CCardHeader>
+              <CCardHeader className="border border-dark rounded mb-1 text-white pink-gradient-background p-2">
                 <center>
                   <strong>Fast Pay</strong>
                 </center>
               </CCardHeader>
-              <button onClick={redirectToZainCash}>
-                <CCardHeader>
-                  <center>
-                    <strong>Zain Cash</strong>
-                  </center>
-                </CCardHeader>
-              </button>
-              <CCardHeader>
+              <CCardHeader className="border border-dark rounded mb-1 white-gradient-background p-2">
+                <center>
+                  <strong>Zain Cash</strong>
+                </center>
+              </CCardHeader>
+              <CCardHeader className="border border-dark rounded mb-1 text-white green-gradient-background p-2">
                 <center>
                   <strong>Buy in Cash</strong>
                 </center>

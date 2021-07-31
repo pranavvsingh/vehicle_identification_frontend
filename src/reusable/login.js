@@ -1,56 +1,30 @@
 import React, { Component } from "react";
 import { CCol, CCard } from "@coreui/react";
+import { Form, Button} from "react-bootstrap";
 
 export default class Login extends Component {
   render() {
     return (
       <CCol md="12">
-        <div class="d-flex justify-content-center">
+        <div className="d-flex justify-content-center">
           <CCol md="4">
-            <CCard style={{ padding: 20 }}>
-              <form>
-                <h3>Sign In</h3>
-                <div className="form-group">
-                  <label>Email address</label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    placeholder="Enter email"
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label>Password</label>
-                  <input
-                    type="password"
-                    className="form-control"
-                    placeholder="Enter password"
-                  />
-                </div>
-
-                <div className="form-group">
-                  <div className="custom-control custom-checkbox">
-                    <input
-                      type="checkbox"
-                      className="custom-control-input"
-                      id="customCheck1"
-                    />
-                    <label
-                      className="custom-control-label"
-                      htmlFor="customCheck1"
-                    >
-                      Remember me
-                    </label>
-                  </div>
-                </div>
-
-                <button type="submit" className="btn btn-primary btn-block">
-                  Submit
-                </button>
-                <p className="forgot-password text-right">
-                  <a href="#">Forgot password?</a>
-                </p>
-              </form>
+            <CCard style={{ padding: 20 }} className="black-gradient-background border-0">
+              <Form>
+                <Form.Group className="mb-3">
+                  <Form.Label>Email address</Form.Label>
+                  <Form.Control type="email" placeholder="Enter email" />
+                </Form.Group>
+                <Form.Group className="mb-3">
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control type="password" placeholder="Password" />
+                </Form.Group>
+                <Form.Group className="mb-3">
+                  <Form.Check type="checkbox" label="Remember me" />
+                </Form.Group>
+                <Button variant="primary" type="submit" className="btn-block">
+                  Log in
+                </Button>
+              </Form>
             </CCard>
           </CCol>
         </div>

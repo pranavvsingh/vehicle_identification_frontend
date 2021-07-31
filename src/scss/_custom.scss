@@ -1,1 +1,39 @@
 // Here you can add other styles
+
+// styles for tutorial page
+.tutorial-container{
+    width: 40%;
+    margin: auto;
+}
+
+.auth-container{
+    width: 30%;
+    margin: auto;
+}
+
+.tabs .nav-link{
+    background-color: transparent;
+    color: rgb(153, 151, 151);
+    border: none;
+}
+
+.tabs .nav-link.active{
+    background-color: rgb(50, 31, 219,0.6);
+    color: white;
+}
+
+.black-gradient-background{
+    background: rgba(0, 0,0,0.6) !important;
+}
+
+.pink-gradient-background{
+    background: rgba(212, 6, 178, 0.6) !important;
+}
+
+.white-gradient-background{
+    background: rgba(255, 255, 255, 0.6) !important;
+}
+
+.green-gradient-background{
+    background: rgba(4, 51, 10, 0.6) !important;
+}
