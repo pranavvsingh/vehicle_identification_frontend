@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { CCol, CRow, CButton } from "@coreui/react";
+import { CCol, CRow, CButton, CContainer } from "@coreui/react";
 import axios from "axios";
 import "../scss/lastCheck.css";
 
@@ -18,11 +18,11 @@ const lastCheckVinData = [
   },
   {
     id: 4,
-    vin: "047furvdds-yf-ugfyf",
+    vin: "A47furvdds-yf-ugfyf",
   },
   {
     id: 5,
-    vin: "0op402nf-yf-ugfyf",
+    vin: "Kop402nf-yf-ugfyf",
   },
   {
     id: 6,
@@ -30,15 +30,15 @@ const lastCheckVinData = [
   },
   {
     id: 7,
-    vin: "dafafafdfda-yf-ugfyf",
+    vin: "dafaafdfda-yf-ugfyf",
   },
   {
     id: 8,
-    vin: "1111111111-yf-ugfyf",
+    vin: "JWSF-yfjg-ugfyfwx",
   },
   {
     id: 9,
-    vin: "54674hgfhfg-yf-ugfyf",
+    vin: "W74hfhfg-yf-ugfyf",
   },
 ];
 
@@ -60,27 +60,23 @@ const LastCheck = () => {
   const renderCard = (pacakage, index) => {
     return (
       <CButton
-        color="link"
+        key={index}
         onClick={() => callVin(pacakage.vin)}
-        style={{ backgroundColor: "#fff00", color: "#fff" }}
+        className="text-white font-weight-bold flex-fill"
       >
-        {pacakage.vin}
+        {pacakage.vin.toUpperCase()}
       </CButton>
     );
   };
 
   return (
     <>
-      <div class="d-flex justify-content-center" style={{ marginTop: "4%" }}>
-        <CCol sm="6">
-          <h3 style={{ color: "#fff" }}>
-            <i>
-              <strong>Last Checks</strong>
-            </i>
-          </h3>
-          <CRow xs={4}>{lastCheckData.map(renderCard)}</CRow>
-        </CCol>
-      </div>
+      <CContainer className="d-flex flex-column mt-5">
+        <h3 className="text-white font-italic p-0">Last Checks</h3>
+        <CRow className="red-gradient-background border border-dark rounded">
+          {lastCheckData.map(renderCard)}
+        </CRow>
+      </CContainer>
     </>
   );
 };

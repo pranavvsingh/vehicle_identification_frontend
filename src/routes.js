@@ -10,6 +10,7 @@ const Auth = React.lazy(() => import("./views/auth"));
 const Payment = React.lazy(() => import("./reusable/payment"));
 const Redirect = React.lazy(() => import("./views/redirect"));
 const PurchaseHistory = React.lazy(() => import("./views/purchaseHistory"));
+const Profile = React.lazy(() => import("./views/profile"))
 
 
 const routes = [
@@ -23,7 +24,8 @@ const routes = [
   { path: "/auth", exact: true, name: "Auth", component: Auth },
   { path: "/payment", exact: true, name: "Payment", component: Payment },
   { path: "/redirect", exact: true, name: "Redirect", component: Redirect },
-  { path: "/history", exact: true, name: "History", component: PurchaseHistory }
+  { path: "/history", exact: true, name: "History", component: PurchaseHistory },
+  { path: "/profile", exact: true, name: "Profile", component: Profile}
 ];
 
 export default routes;
