@@ -7,8 +7,6 @@ import {
   CTabContent,
   CTabPane,
 } from "@coreui/react";
-import axios from "axios";
-import Autocheck from "./autocheck";
 
 const Dashboard = () => {
   const [smartPhoneData, setSmartPhoneData] = useState("");

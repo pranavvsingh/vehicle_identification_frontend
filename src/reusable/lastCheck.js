@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { CCol, CRow, CButton, CContainer } from "@coreui/react";
-import axios from "axios";
+import { CRow, CButton, CContainer } from "@coreui/react";
 import "../scss/lastCheck.css";
 
 const lastCheckVinData = [

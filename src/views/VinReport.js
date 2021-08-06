@@ -23,7 +23,7 @@ const VinReport = (props) => {
 
   const getReportData = async () => {
     if (props.vin) {
-      const checkAutoCheckUrl = "check_autocheck" + "?vincode=" + props.vin;
+      const checkAutoCheckUrl = `check_autocheck?vincode=${props.vin}`;
       const checkAutoCheckResponse = await apiData(checkAutoCheckUrl);
       if (
         checkAutoCheckResponse &&
@@ -34,7 +34,7 @@ const VinReport = (props) => {
       } else {
       }
 
-      const checkCarafaxUrl = "check_carafax" + "?vincode=" + props.vin;
+      const checkCarafaxUrl = `check_carafax?vincode=${props.vin}`;
       const checkCarafaxResponse = await apiData(checkCarafaxUrl);
 
       if (
@@ -46,7 +46,7 @@ const VinReport = (props) => {
       } else {
       }
 
-      const checkPhotoUrl = "check_photo" + "?vincode=" + props.vin;
+      const checkPhotoUrl = `check_photo?vincode=${props.vin}`;
       const checkPhotoResponse = await apiData(checkPhotoUrl);
 
       if (
@@ -259,7 +259,7 @@ const VinReport = (props) => {
                   style={{ height: 65, width: 200 }}
                   src="https://previews.123rf.com/images/bigtunaonline/bigtunaonline1710/bigtunaonline171000243/88655949-blurred-background-with-modern-luxury-car-on-the-blur-roof-of-the-building-at-the-sunset-modern-car-.jpg"
                   class="img-fluid"
-                  alt="Responsive image"
+                  alt="background"
                 />
 
                 <div
