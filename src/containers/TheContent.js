@@ -5,9 +5,6 @@ import { useSelector } from "react-redux";
 
 // routes config
 import routes from "../routes";
-import Auth from "src/views/auth";
-import Profile from "src/views/profile";
-
 const loading = (
   <div className="pt-3 text-center">
     <div className="sk-spinner sk-spinner-pulse"></div>
@@ -17,32 +14,32 @@ const loading = (
 const TheContent = () => {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
+  const renderRoute = (route) => {
+    return (
+      route.component && (
+        <Route
+          key={route.id}
+          path={route.path}
+          exact={route.exact}
+          name={route.name}
+          render={(props) => (
+            <CFade>
+              <route.component {...props} />
+            </CFade>
+          )}
+        />
+      )
+    );
+  };
+
   return (
     <main className="c-main">
       <CContainer fluid>
         <Suspense fallback={loading}>
           <Switch>
-            {routes.map((route, idx) => {
-              return (
-                route.component && (
-                  <Route
-                    key={idx}
-                    path={route.path}
-                    exact={route.exact}
-                    name={route.name}
-                    render={(props) => (
-                      <CFade>
-                        <route.component {...props} />
-                      </CFade>
-                    )}
-                  />
-                )
-              );
-            })}
-            {!isLoggedIn && <Route path="/auth" name="Auth" component={Auth} />}
-            {isLoggedIn && (
-              <Route path="/profile" name="Profile" component={Profile} />
-            )}
+            {routes.commonRoutes.map(renderRoute)}
+            {isLoggedIn && routes.authenticatedRoutes.map(renderRoute)}
+            {!isLoggedIn && routes.unauthenticatedRoutes.map(renderRoute)}
             <Redirect from="/" to="/dashboard" />
           </Switch>
         </Suspense>

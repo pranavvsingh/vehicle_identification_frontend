@@ -1,5 +1,7 @@
+import { getData } from "src/utils/localStorageUtil";
+
 const intialAuthState = {
-  isLoggedIn: false,
+  isLoggedIn: !!getData('token'),
   userData: {},
 };
 

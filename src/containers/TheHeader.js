@@ -6,6 +6,7 @@ import {
   CHeaderNavLink,
 } from "@coreui/react";
 import ReactCountryFlag from "react-country-flag";
+import routes from "src/routes";
 
 const TheHeader = () => {
   /* const sidebarShow = useSelector((state) => state.changeState.sidebarShow);
@@ -24,6 +25,16 @@ const TheHeader = () => {
 
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
+  const renderNavItem = (route) => {
+    return (
+      <CHeaderNavItem className="px-3" key={route.id}>
+        <CHeaderNavLink to={route.path}>
+          <strong>{route.name}</strong>
+        </CHeaderNavLink>
+      </CHeaderNavItem>
+    );
+  };
+
   return (
     <CHeader withSubheader>
       <CHeaderNav className="d-md-down-none mr-auto">
@@ -35,53 +46,19 @@ const TheHeader = () => {
           </CHeaderNavLink>
         </CHeaderNavItem>
       </CHeaderNav>
-
       <CHeaderNav className="d-md-down-none mr-auto">
-        <CHeaderNavItem className="px-3">
-          <CHeaderNavLink to="/dashboard">
-            <strong>Dashboard</strong>
-          </CHeaderNavLink>
-        </CHeaderNavItem>
-        <CHeaderNavItem className="px-3">
-          <CHeaderNavLink to="/tutorials">
-            <strong>Tutorials</strong>
-          </CHeaderNavLink>
-        </CHeaderNavItem>
-        <CHeaderNavItem className="px-3">
-          <CHeaderNavLink to="/carfax">
-            <strong>Carfax</strong>
-          </CHeaderNavLink>
-        </CHeaderNavItem>
-        <CHeaderNavItem className="px-3">
-          <CHeaderNavLink to="/autocheck">
-            <strong>Autocheck</strong>
-          </CHeaderNavLink>
-        </CHeaderNavItem>
-        <CHeaderNavItem className="px-3">
-          <CHeaderNavLink to="/auction">
-            <strong>Auction History Images</strong>
-          </CHeaderNavLink>
-        </CHeaderNavItem>
-        <CHeaderNavItem className="px-3">
-          <CHeaderNavLink to="/packages">
-            <strong>Packages</strong>
-          </CHeaderNavLink>
-        </CHeaderNavItem>
-        {isLoggedIn ? (
-          <CHeaderNavItem className="px-3">
-            <CHeaderNavLink to="/profile">
-              <strong>Profile</strong>
-            </CHeaderNavLink>
-          </CHeaderNavItem>
-        ) : (
-          <CHeaderNavItem className="px-3">
-            <CHeaderNavLink to="/auth">
-              <strong>Login</strong>
-            </CHeaderNavLink>
-          </CHeaderNavItem>
-        )}
+        {routes.commonRoutes
+          .filter((route) => route.showonNav)
+          .map(renderNavItem)}
+        {isLoggedIn &&
+          routes.authenticatedRoutes
+            .filter((route) => route.showonNav)
+            .map(renderNavItem)}
+        {!isLoggedIn &&
+          routes.unauthenticatedRoutes
+            .filter((route) => route.showonNav)
+            .map(renderNavItem)}
       </CHeaderNav>
-
       <CHeaderNav className="px-3">
         <p style={{ margin: 10 }}>Language</p>
         <ReactCountryFlag
