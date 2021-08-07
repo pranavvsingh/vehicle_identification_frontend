@@ -5,6 +5,7 @@ import { Validation } from "src/utils/Validation";
 import { apiDataPost } from "src/Api/Api";
 import { Alert } from "react-bootstrap";
 import constants from "src/utils/constants";
+import { toast } from "react-toastify";
 
 const Signup = () => {
   const intialData = {
@@ -64,6 +65,7 @@ const Signup = () => {
       );
       setLoading(false);
       if (response instanceof Error) throw response;
+      toast.success('Registered Successfully!')
       setRegistered(true);
       setData(intialData);
     } catch (err) {

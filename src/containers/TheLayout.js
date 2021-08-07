@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { getData, removeData } from "src/utils/localStorageUtil";
 import { useHistory } from "react-router-dom";
 import { Spinner } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 const TheLayout = () => {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ const TheLayout = () => {
     } catch (err) {
       dispatch({ type: "logout" });
       removeData("token");
+      toast.error("Your Session Expired!. Please login again.");
       history.push("/dashboard");
     }
   };

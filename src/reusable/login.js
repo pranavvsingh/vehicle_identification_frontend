@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { setData as setItem } from "../utils/localStorageUtil";
 import constants from "src/utils/constants";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [errors, setErrors] = useState({});
@@ -43,6 +44,7 @@ const Login = () => {
 
       setItem("token", userData["US_Token"]);
       dispatch({ type: "login", payload: { userData } });
+      toast.success('Login successfull!');
       history.push("/dashboard");
     } catch (err) {
       console.log("Login failed");

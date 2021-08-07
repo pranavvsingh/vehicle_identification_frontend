@@ -3,6 +3,7 @@ import { Container, Form, Card, Button, InputGroup } from "react-bootstrap";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removeData } from "src/utils/localStorageUtil";
+import { toast } from "react-toastify";
 
 const Profile = (props) => {
   const [isMobileFieldDisabled, setMobileField] = useState(true);
@@ -66,6 +67,7 @@ const Profile = (props) => {
             onClick={() => {
               removeData('token');
               dispatch({ type: "logout" });
+              toast.error('Logged out sucessfully!');
             }}
           >
             Logout
