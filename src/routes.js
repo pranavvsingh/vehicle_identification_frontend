@@ -14,14 +14,62 @@ const PurchaseHistory = React.lazy(() => import("./views/purchaseHistory"));
 
 const routes = {
   commonRoutes: [
-    { id: 2, path: "/dashboard", name: "Dashboard", component: Dashboard, showonNav: true },
-    { id: 3, path: "/auction", name: "Auction", component: Auction, showonNav: true },
-    { id: 4, path: "/packages", name: "Packages", component: Packages,showonNav: true },
-    { id: 5, path: "/autocheck", name: "Autocheck", component: Autocheck, showonNav: true },
-    { id: 6, path: "/carfax", name: "Carfax", component: Carfax, showonNav: true },
-    { id: 7, path: "/tutorials", name: "Tutorials", component: Tutorials, showonNav: true },
-    { id: 8, path: "/payment", name: "Payment", component: Payment ,showonNav: false},
-    { id: 9, path: "/redirect", name: "Redirect", component: Redirect ,showonNav: false},
+    {
+      id: 2,
+      path: "/dashboard",
+      name: "Dashboard",
+      component: Dashboard,
+      showonNav: true,
+    },
+    {
+      id: 3,
+      path: "/auction",
+      name: "Auction",
+      component: Auction,
+      showonNav: true,
+    },
+    {
+      id: 4,
+      path: "/packages",
+      name: "Packages",
+      component: Packages,
+      showonNav: true,
+    },
+    {
+      id: 5,
+      path: "/autocheck",
+      name: "Autocheck",
+      component: Autocheck,
+      showonNav: true,
+    },
+    {
+      id: 6,
+      path: "/carfax",
+      name: "Carfax",
+      component: Carfax,
+      showonNav: true,
+    },
+    {
+      id: 7,
+      path: "/tutorials",
+      name: "Tutorials",
+      component: Tutorials,
+      showonNav: true,
+    },
+    {
+      id: 8,
+      path: "/payment",
+      name: "Payment",
+      component: Payment,
+      showonNav: false,
+    },
+    {
+      id: 9,
+      path: "/redirect",
+      name: "Redirect",
+      component: Redirect,
+      showonNav: false,
+    },
   ],
   authenticatedRoutes: [
     {
@@ -29,14 +77,14 @@ const routes = {
       path: "/history",
       name: "History",
       component: PurchaseHistory,
-      showonNav: true
+      showonNav: true,
     },
     {
       id: 11,
       path: "/profile",
       name: "Profile",
       component: Profile,
-      showonNav: true
+      showonNav: true,
     },
   ],
   unauthenticatedRoutes: [
@@ -45,7 +93,7 @@ const routes = {
       path: "/auth",
       name: "Login",
       component: Auth,
-      showonNav: true
+      showonNav: true,
     },
   ],
 };
