@@ -39,7 +39,6 @@ const PurchaseHistory = (props) => {
       <Row>
         <Form.Control
           type="text"
-          readOnly
           placeholder="Search by VIN"
           className="bg-white col-8 m-auto rounded"
         />
@@ -57,7 +56,7 @@ const PurchaseHistory = (props) => {
           </thead>
           <tbody>
             {history.map((record,index) => (
-              <tr key={index} className="border-bottom border-dark">
+              <tr key={index} className="border-bottom border-dark red-hover" style={{cursor: 'pointer'}}>
                 <td>{index+1}</td>
                 <td>{record.VIN}</td>
                 <td>{record.Type}</td>

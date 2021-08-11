@@ -12,15 +12,14 @@ import {
   CNavLink,
   CNav,
 } from "@coreui/react";
-import { apiDataPost } from "../Api/Api";
 import { Container, Row, Col, Form } from "react-bootstrap";
 const Payment = (props) => {
   const [activeKey, setActiveKey] = useState(true);
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
+  // const [phone, setPhone] = useState("");
+  // const [email, setEmail] = useState("");
   //  const paymentAmount = props.location.state.detail;
 
-  const redirectToZainCash = async () => {
+  /*const redirectToZainCash = async () => {
     if (phone || email) {
       localStorage.setItem("phone", phone);
       localStorage.setItem("email", email);
@@ -33,7 +32,7 @@ const Payment = (props) => {
     } else {
       alert("Please enter one of the email or phone");
     }
-  };
+  };*/
 
   return (
     <div class="d-flex justify-content-center" style={{ marginTop: "4%" }}>
@@ -121,7 +120,7 @@ const Payment = (props) => {
                     placeholder="Enter Email.."
                     autoComplete="email"
                     onChange={(e) => {
-                      setEmail(e.target.value);
+                      //setEmail(e.target.value);
                     }}
                   />
                   <CFormText className="help-block">
@@ -141,7 +140,7 @@ const Payment = (props) => {
                     placeholder="Enter Phone.."
                     autoComplete="phone"
                     onChange={(e) => {
-                      setPhone(e.target.value);
+                      //setPhone(e.target.value);
                     }}
                   />
                   <CFormText className="help-block">

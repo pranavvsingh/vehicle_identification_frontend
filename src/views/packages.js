@@ -8,7 +8,7 @@ import {
   CCardFooter,
   CContainer,
 } from "@coreui/react";
-import axios from "axios";
+
 
 const packageInfo = [
   {
@@ -186,18 +186,11 @@ const Packages = () => {
               {pacakage.credits} <br /> Credits
             </CCol>
             <div className="row col flex-column font-weight-bold text-center">
-              {pacakage.offers.map((offer, index) => (
-                <>
-                  <CCol clas>
-                    {offer}
-                    {index < 2 && (
-                      <>
-                        <br /> or
-                      </>
-                    )}
-                  </CCol>
-                </>
-              ))}
+              <CCol>Offer 1</CCol>
+              <CCol>or</CCol>
+              <CCol>Offer2</CCol>
+              <CCol>or</CCol>
+              <CCol>Offer3</CCol>
             </div>
           </CRow>
         </CCardBody>

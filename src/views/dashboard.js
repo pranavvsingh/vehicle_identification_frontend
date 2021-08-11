@@ -1,12 +1,10 @@
 import React, { useReducer } from "react";
-import { CCol, CInputGroup, CInputGroupAppend, CButton } from "@coreui/react";
+import { CContainer, CButton } from "@coreui/react";
+import { Form, InputGroup } from "react-bootstrap";
 import VinReport from "./VinReport";
 import LastCheck from "../reusable/lastCheck.js";
-import SearchBar from "material-ui-search-bar";
 import { dashboardReducer } from "../reducers/component-reducer";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { cibWindows } from "@coreui/icons";
 import { apiDataPost } from "src/Api/Api";
 
 const initialState = {
@@ -20,7 +18,6 @@ const Dashboard = () => {
   const [state, dispatch] = useReducer(dashboardReducer, initialState);
   const { vin, visible, visibleLastCheck } = state;
   const reduxDispatch = useDispatch();
-  const history = useHistory();
 
   const callVin = async () => {
     localStorage.setItem("vin", vin);
@@ -48,24 +45,24 @@ const Dashboard = () => {
     if (payment === 1) {
       console.log(autcheckCheck, imageCheck, carafaxCheck);
       reduxDispatch({ type: "success", data: "success" });
-      if (autcheckCheck == 1 && imageCheck == 1 && carafaxCheck == 1) {
+      if (autcheckCheck === 1 && imageCheck === 1 && carafaxCheck === 1) {
         window.open("http://localhost:3000/#/autocheck/");
         window.open("http://localhost:3000/#/carfax/");
         window.open("http://localhost:3000/#/image/");
-      } else if (autcheckCheck == 1 && carafaxCheck == 1) {
+      } else if (autcheckCheck === 1 && carafaxCheck === 1) {
         window.open("http://localhost:3000/#/autocheck/");
         window.open("http://localhost:3000/#/carfax/");
-      } else if (autcheckCheck == 1 && imageCheck == 1) {
+      } else if (autcheckCheck === 1 && imageCheck === 1) {
         window.open("http://localhost:3000/#/autocheck/");
         window.open("http://localhost:3000/#/image/");
-      } else if (carafaxCheck == 1 || imageCheck == 1) {
+      } else if (carafaxCheck === 1 || imageCheck === 1) {
         window.open("http://localhost:3000/#/image/", "2");
         window.open("http://localhost:3000/#/carfax/", "1");
-      } else if (imageCheck == 1) {
+      } else if (imageCheck === 1) {
         window.open("http://localhost:3000/#/image/");
-      } else if (autcheckCheck == 1) {
+      } else if (autcheckCheck === 1) {
         window.open("http://localhost:3000/#/autocheck/");
-      } else if (carafaxCheck == 1) {
+      } else if (carafaxCheck === 1) {
         window.open("http://localhost:3000/#/carfax/");
       }
     } else {
@@ -73,49 +70,63 @@ const Dashboard = () => {
       reduxDispatch({ type: "failure", data: "failure" });
     }
   };
-
   return (
-    <>
-      <h3 class="text-center">
-        <i style={{ color: "#fff" }}>
-          <strong>Best Website for Vehicle's Auction History Images</strong>
-        </i>
-      </h3>
-      <h4 class="text-center" style={{ color: "#fff" }}>
-        <i style={{ color: "#fff" }}>
-          <strong>Vehicle History Report by VIN</strong>
-        </i>
-      </h4>
-      <h4 class="text-center" style={{ color: "#fff" }}>
-        <i>
-          <strong>Never Trust Anyone When You Buy A Car.</strong>
-        </i>
-      </h4>
-      <br />
-      <div class="d-flex justify-content-center">
-        <CCol md="4">
-          <CInputGroup className="mb-12">
-            <SearchBar
-              value={vin}
-              placeholder="Enter VIN....."
-              onChange={(e) =>
-                dispatch({ type: "field", field: "vin", value: e })
+    <CContainer className="d-flex flex-column align-items-center mb-3 col-6">
+      <CContainer>
+        <h3 className="text-center">
+          <i style={{ color: "#fff" }}>
+            <strong>Best Website for Vehicle's Auction History Images</strong>
+          </i>
+        </h3>
+        <h4 className="text-center" style={{ color: "#fff" }}>
+          <i style={{ color: "#fff" }}>
+            <strong>Vehicle History Report by VIN</strong>
+          </i>
+        </h4>
+        <h4 className="text-center" style={{ color: "#fff" }}>
+          <i>
+            <strong>Never Trust Anyone When You Buy A Car.</strong>
+          </i>
+        </h4>
+        <br />
+      </CContainer>
+      <CContainer className="d-flex justify-content-center p-0">
+        <InputGroup>
+          <Form.Control
+            value={vin}
+            size="lg"
+            className="border-right-0 rounded-0 rounded-left-border flex-fill no-outline"
+            placeholder="Enter VIN....."
+            onChange={(e) =>
+              dispatch({ type: "field", field: "vin", value: e.target.value })
+            }
+          />
+          {vin && (
+            <InputGroup.Text
+              style={{ cursor: "pointer" }}
+              className="bg-white border-left-0 rounded-0 text-dark font-weight-bold"
+              onClick={() =>
+                dispatch({ type: "field", field: "vin", value: "" })
               }
-              onCancelSearch={() => dispatch({ type: "clear_vin_data" })}
-            />
-            <CInputGroupAppend>
-              <CButton type="button" color="primary" onClick={callVin}>
-                Check
-              </CButton>
-            </CInputGroupAppend>
-          </CInputGroup>
-        </CCol>
-      </div>
+            >
+              X
+            </InputGroup.Text>
+          )}
+        </InputGroup>
+        <CButton
+          type="button"
+          color="primary"
+          onClick={callVin}
+          className="rounded-0 rounded-right-border px-5"
+        >
+          Check
+        </CButton>
+      </CContainer>
 
       {visible && <VinReport vin={vin} />}
 
       {visibleLastCheck && <LastCheck />}
-    </>
+    </CContainer>
   );
 };
 

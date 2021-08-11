@@ -1,5 +1,6 @@
-import { createStore } from 'redux'
-import { combineReducers } from 'redux'
+import { createStore } from 'redux';
+import { combineReducers } from 'redux';
+import {authReducer} from './auth-reducer';
 
 const initialState = {
   sidebarShow: 'responsive'
@@ -38,7 +39,8 @@ const payment = (state = paymentIntialState,action) =>{
 
 const rootReducer = combineReducers({
     changeState,
-    payment
+    payment,
+    auth: authReducer
   });
 
 const store = createStore(rootReducer)

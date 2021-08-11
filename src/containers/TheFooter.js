@@ -5,7 +5,7 @@ const TheFooter = () => {
   return (
     <CFooter fixed={false}>
       <CCol xs="12">
-        <div class="d-flex justify-content-center">
+        <div className="d-flex justify-content-center">
           <p>
             &copy; 2021,{" "}
             <a
@@ -17,7 +17,7 @@ const TheFooter = () => {
             </a>
           </p>
         </div>
-        <div class="d-flex justify-content-center">
+        <div className="d-flex justify-content-center">
           <p>
             Please contact us with any questions or comments you may have :
             info@CheckVin.org, +964 (0 750 183 6009)
