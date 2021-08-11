@@ -1,5 +1,5 @@
 import { CCol, CCard } from "@coreui/react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, InputGroup } from "react-bootstrap";
 import { useState } from "react";
 import { Validation } from "src/utils/Validation";
 import { apiDataPost } from "src/Api/Api";
@@ -19,6 +19,7 @@ const Signup = () => {
   const [errors, setErrors] = useState({});
   const [isLoading, setLoading] = useState(false);
   const [isRegistered, setRegistered] = useState(false);
+  const [isPasswordVisible, setPasswordVisibility] = useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -70,7 +71,7 @@ const Signup = () => {
       setData(intialData);
     } catch (err) {
       console.log("Sign up failed");
-      const { status } = err.response;
+      const status = err.response?.status;
       if (status === 409) {
         setErrors({
           apiError: constants.API_ERROR_MESSAGES.USER_ALREADY_EXISTS,
@@ -153,13 +154,25 @@ const Signup = () => {
               </Form.Group>
               <Form.Group className="mb-3">
                 <Form.Label>Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  placeholder="Enter password"
-                  name="password"
-                  value={data.password}
-                  onChange={handleChange}
-                />
+                <InputGroup>
+                  <Form.Control
+                    type={isPasswordVisible? 'text': 'password'}
+                    name="password"
+                    placeholder="Password"
+                    className="border-right-0 no-outline"
+                    value={data.password}
+                    onChange={handleChange}
+                  />
+                  <InputGroup.Text
+                    className="text-primary bg-white border-left-0 rounded-0 rounded-right-border"
+                    style={{ cursor: "pointer" }}
+                    onClick={() => {
+                      setPasswordVisibility(!isPasswordVisible);
+                    }}
+                  >
+                    {isPasswordVisible ? "Hide" : "Show"}
+                  </InputGroup.Text>
+                </InputGroup>
                 {errors && errors.password && (
                   <Form.Text className="text-danger">
                     {errors.password.message}
