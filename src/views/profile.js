@@ -47,7 +47,7 @@ const Profile = (props) => {
               />
               {isMobileFieldDisabled && (
                 <InputGroup.Text
-                  className="text-primary bg-light border-left-0 rounded-0 rounded-right-border"
+                  className="text-primary bg-white border-left-0 rounded-0 rounded-right-border"
                   style={{ cursor: "pointer" }}
                   onClick={() => {
                     setMobileField(false);

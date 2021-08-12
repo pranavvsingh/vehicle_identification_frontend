@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { CCol, CCard } from "@coreui/react";
-import { Form, Button, Alert } from "react-bootstrap";
+import { Form, Button, Alert, InputGroup } from "react-bootstrap";
 import { Validation } from "../utils/Validation";
 import { apiDataPost } from "src/Api/Api";
 import { useDispatch } from "react-redux";
@@ -13,6 +13,7 @@ const Login = () => {
   const [errors, setErrors] = useState({});
   const [data, setData] = useState({ email: "", password: "" });
   const [isLoading, setLoading] = useState(false);
+  const [isPasswordVisible, setPasswordVisibility] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -44,11 +45,11 @@ const Login = () => {
 
       setItem("token", userData["US_Token"]);
       dispatch({ type: "login", payload: { userData } });
-      toast.success('Login successfull!');
+      toast.success("Login successfull!");
       history.push("/dashboard");
     } catch (err) {
       console.log("Login failed");
-      const { status } = err.response;
+      const status = err.response?.status;
       if (status === 404 || status === 403 || status === 422) {
         setErrors({
           apiError: constants.API_ERROR_MESSAGES.INVALID_CREDENTIALS,
@@ -98,13 +99,25 @@ const Login = () => {
               </Form.Group>
               <Form.Group className="mb-3">
                 <Form.Label>Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  name="password"
-                  placeholder="Password"
-                  value={data.password}
-                  onChange={handleChange}
-                />
+                <InputGroup>
+                  <Form.Control
+                    type={isPasswordVisible? 'text': 'password'}
+                    name="password"
+                    placeholder="Password"
+                    className="border-right-0 no-outline"
+                    value={data.password}
+                    onChange={handleChange}
+                  />
+                  <InputGroup.Text
+                    className="text-primary bg-white border-left-0 rounded-0 rounded-right-border"
+                    style={{ cursor: "pointer" }}
+                    onClick={() => {
+                      setPasswordVisibility(!isPasswordVisible);
+                    }}
+                  >
+                    {isPasswordVisible ? "Hide" : "Show"}
+                  </InputGroup.Text>
+                </InputGroup>
                 {errors && errors.password && (
                   <Form.Text className="text-danger">
                     {errors.password.message}
