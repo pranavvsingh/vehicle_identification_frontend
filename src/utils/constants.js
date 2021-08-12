@@ -15,15 +15,15 @@ const constants = {
   },
   API_ERROR_MESSAGES: {
     GENERAL_ERROR: "Some error occured. Please try again!",
-    USER_ALREADY_EXISTS: "User with this email already exists. Please try again with other email.",
+    USER_ALREADY_EXISTS:
+      "User with this email already exists. Please try again with other email.",
     INVALID_CREDENTIALS: "Incorrect Email or Password. Please try again!",
   },
   REGEX: {
-    EMAIL:
-      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+    EMAIL: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
     PASSWORD:
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-    MOBILE: "",
+      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/,
+    MOBILE: /^\d{10}$/,
   },
 };
 

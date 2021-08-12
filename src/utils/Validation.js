@@ -21,20 +21,17 @@ export class Validation {
   }
 
   validateEmail() {
-    if (this.data.email) {
-      if (!this.data.email.match(constants.REGEX.EMAIL)) {
-        this._setError("email", constants.ERROR_MESSAGES.INVALID_EMAIL);
-      }
-    }
+    if (this.data.email && !this.data.email.match(constants.REGEX.EMAIL))
+      this._setError("email", constants.ERROR_MESSAGES.INVALID_EMAIL);
     return this;
   }
 
   validatePassword() {
-    if (this.data.password) {
-      if (!this.data.password.match(constants.REGEX.PASSWORD)) {
-        this._setError("password", constants.ERROR_MESSAGES.INVALID_PASSWORD);
-      }
-    }
+    if (
+      this.data.password &&
+      !this.data.password.match(constants.REGEX.PASSWORD)
+    )
+      this._setError("password", constants.ERROR_MESSAGES.INVALID_PASSWORD);
     return this;
   }
 
@@ -51,7 +48,9 @@ export class Validation {
   }
 
   validateMobileNumber() {
-    if (this) return this;
+    if (this.data.mobile && !this.data.mobile.match(constants.REGEX.MOBILE))
+      this._setError("mobile", constants.ERROR_MESSAGES.INVALID_MOBILE);
+    return this;
   }
 
   complete() {

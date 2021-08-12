@@ -103,13 +103,13 @@ const Dashboard = () => {
           />
           {vin && (
             <InputGroup.Text
-              style={{ cursor: "pointer" }}
+              style={{ cursor: "pointer", fontSize:'20px' }}
               className="bg-white border-left-0 rounded-0 text-dark font-weight-bold"
               onClick={() =>
                 dispatch({ type: "field", field: "vin", value: "" })
               }
             >
-              X
+              &times;
             </InputGroup.Text>
           )}
         </InputGroup>

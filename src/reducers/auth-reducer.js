@@ -1,11 +1,11 @@
 import { getData } from "src/utils/localStorageUtil";
 
-const intialAuthState = {
+const initialAuthState = {
   isLoggedIn: !!getData('token'),
   userData: {},
 };
 
-export const authReducer = (state = intialAuthState, action) => {
+export const authReducer = (state = initialAuthState, action) => {
   switch (action.type) {
     case "login": {
       return {
